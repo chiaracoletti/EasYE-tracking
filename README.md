@@ -1,9 +1,14 @@
 # E*as*YE TRACKING with OPENCV
 
-We are developing an easy and accessible eye tracking software that identifies faces, eyes and iris in a video.
+We are developing an easy and accessible eye tracking software that identifies faces, eyes and iris in a video, and provides an immediate visual representation of the iris movement throgh a scatterplot.
 It requires only a common computer and the open source **OPENCV** library to work (NO expensive hardware required!!!).
 We chose opencv because it is open source, easy to use, and it provides some great code for object detection in images and videos, which perfectly fitted our needs. 
 The code is written in Python.
+
+##Contents
+* ***face_eye_detection.ipynb*** is our first basic attempt to just detect faces and eyes in a video.
+* ***occhiecerchi.ipynb*** is the complete program that identifies faces, eyes, iris and pupils and allows to have a simple yet immediate graphic representation of the eyes movement through a scatterplot.
+* ***Provacolori.ipynb*** is a raw version of the same program implemented with a different approach to the pupil tracking, based on colour gradient. We are still working on this! ;)
 
 ##Getting started
 * Make sure you already have opencv on your computer, the cascades we used should already be included. 
@@ -18,3 +23,5 @@ Please, feel free to contact us:
 giada.colella@mail.polimi.it
 
 chiara.coletti@mail.polimi.it
+
+Thanks for your attention :)
