@@ -1,6 +1,6 @@
 # E*as*YE TRACKING with OPENCV
 
-We are developing an easy and accessible eye tracking software that identify faces, eyes and iris in a video.
+We are developing an easy and accessible eye tracking software that identifies faces, eyes and iris in a video.
 It requires only a common computer and the open source **OPENCV** library to work (NO expensive hardware required!!!).
 We chose opencv because it is open source, easy to use, and it provides some great code for object detection in images and videos, which perfectly fitted our needs. 
 The code is written in Python.
