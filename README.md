@@ -7,12 +7,13 @@ The code is written in Python.
 
 ##Contents
 * ***face_eye_detection.ipynb*** is our first basic attempt to just detect faces and eyes in a video.
-* ***occhiecerchi.ipynb*** is the complete program that identifies faces, eyes, iris and pupils and allows to have a simple yet immediate graphic representation of the eyes movement through a scatterplot.
+* ***eyetracking_scatter.ipynb*** is the complete program that identifies faces, eyes, iris and pupils and allows to have a simple yet immediate graphic representation of the eyes movement through a scatterplot.
 * ***eyetracking_color.ipynb*** is a version of the same program implemented with a more precise approach to the pupil tracking, based on colour gradient. 
+* ***haarcascade_eye.xml*** and ***haarcascade_frontalface_default.xml*** are the cascade classifiers' files, you need them in your working directory to run the code!
 
 ##Getting started
-* Make sure you already have opencv on your computer, the cascades we used should already be included. 
-* Move the cascades' files in your working directory.
+* Make sure you already have opencv on your computer, the cascade classifiers we used should already be included. 
+* Move the cascade classifiers' files in your working directory.
 * Download the code and enjoy! (we used jupyter)
 
 ##Contributors:
