@@ -23,7 +23,7 @@ Please, feel free to contact us:
 
 giada.colella@mail.polimi.it:
 
-![](https://github.com/chiaracoletti/EasYE-tracking/blob/master/IMG-20160628-WA0032.png)
+![](https://github.com/chiaracoletti/EasYE-tracking/blob/master/Giadafoto.jpg)
 
 chiara.coletti@mail.polimi.it:
 
