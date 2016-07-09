@@ -16,13 +16,17 @@ The code is written in Python.
 * Move the cascade classifiers' files in your working directory.
 * Download the code and enjoy! (we used jupyter)
 
-##Contributors:
+##Creators:
 We are two students of Biomedical Engineering @Politecnico di Milano, this project is the final result of our Computer Science course. 
 We are also participating in the Xilinx Pynq Hackathon, in july 2016.
 Please, feel free to contact us:
 
-giada.colella@mail.polimi.it
+giada.colella@mail.polimi.it:
 
-chiara.coletti@mail.polimi.it
+![](https://github.com/chiaracoletti/EasYE-tracking/blob/master/IMG-20160628-WA0032.png)
+
+chiara.coletti@mail.polimi.it:
+
+![](https://github.com/chiaracoletti/EasYE-tracking/raw/master/IMG_20160706_194512.png)
 
 Thanks for your attention :)
