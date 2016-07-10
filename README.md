@@ -10,6 +10,7 @@ The code is written in Python.
 * ***eyetracking_scatter.ipynb*** is the complete program that identifies faces, eyes, iris and pupils and allows to have a simple yet immediate graphic representation of the eyes movement through a scatterplot.
 * ***eyetracking_color.ipynb*** is a version of the same program implemented with a more precise approach to the pupil tracking, based on colour gradient. 
 * ***haarcascade_eye.xml*** and ***haarcascade_frontalface_default.xml*** are the cascade classifiers' files, you need them in your working directory to run the code!
+* ***white_function.ipynb*** is a new program which turns on leds according to the gaze direction (up/down,left/right)
 
 ##Getting started
 * Make sure you already have opencv on your computer, the cascade classifiers we used should already be included. 
@@ -23,7 +24,7 @@ Please, feel free to contact us:
 
 giada.colella@mail.polimi.it:
 
-![](https://github.com/chiaracoletti/EasYE-tracking/blob/master/testingphoto.png)
+![](https://github.com/chiaracoletti/EasYE-tracking/blob/master/036E5797050B4B66A7BFC3A09EDB543D.png)
 
 chiara.coletti@mail.polimi.it:
 
