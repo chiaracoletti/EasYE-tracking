@@ -1,0 +1,7 @@
+\select@language {italian}
+\select@language {italian}
+\contentsline {section}{\numberline {1}Introduzione}{4}
+\contentsline {section}{\numberline {2}Dallo Pseudocodice...}{5}
+\contentsline {section}{\numberline {3}...Al codice}{6}
+\contentsline {section}{\numberline {4}Codice completo}{13}
+\contentsline {section}{\numberline {5}Conclusioni}{17}
