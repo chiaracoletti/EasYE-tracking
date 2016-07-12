@@ -42,13 +42,14 @@ stepnumber=2, numbersep=5pt, frame=single,breaklines=True}}{}
 \pagebreak
 
 \begin{abstract}
-	L' Eye tracking è un complesso processo di misurazione del punto di fissazione oculare. I vantaggi che derivano dall'utilizzo di questa tecnica sono molteplici: a partire da indagini statistiche di mercato fino al miglioramento della comunicazione uomo/macchina.
+	L' Eye tracking \`e un complesso processo di misurazione del punto di fissazione oculare. I vantaggi che derivano dall'utilizzo di questa tecnica sono molteplici: a partire da indagini statistiche di mercato fino al miglioramento della comunicazione uomo/macchina.
 \end{abstract}
 \pagebreak
 \section{Introduzione}
-Il nostro progetto si pone nella prima fase di realizzazione di un eye tracker. Ha come scopo lo studio del movimento dell'occhio. Partendo da un video, abbiamo cercato di individuare l'occhio e di tracciarne il movimento. Punto focale della nostra ricerca è stato il riconoscimento del centro dell'iride. 
+Il nostro progetto si pone nella prima fase di realizzazione di un eye tracker. Ha come scopo lo studio del movimento dell'occhio. Partendo da un video, abbiamo cercato di individuare l'occhio e di tracciarne il movimento. Punto focale della nostra ricerca \`e stato il riconoscimento del centro dell'iride. 
 
-Abbiamo sviluppato il nostro progetto usando {\textbf{"Python"} come linguaggio di programmazione. Per iniziare è necessario aver installato la libreria libera Opencv. Il riconoscimento di volti ed occhi è stato realizzato mediante l'algoritmo "Cascade Classification". Prima di operare, dunque, è stato necessario importare i file classificatori (o "haarcascades") nella cartella di lavoro.
+Abbiamo sviluppato il nostro progetto usando {\textbf{"Python"} come linguaggio di programmazione. Per iniziare \`e necessario aver installato la libreria libera Opencv. Il riconoscimento di volti ed occhi \`e stato realizzato mediante l'algoritmo "Cascade Classification". Prima di operare, dunque, è stato necessario importare i file classificatori (o "haarcascades") nella cartella di lavoro.
+	\subsection{Cosa sono le Haarcascades}
 \pagebreak
 
 \section{Dallo Pseudocodice...}
@@ -325,7 +326,7 @@ cv2.destroyAllWindows()
    Chiusura di tutte le finestre.
    
 \pagebreak  	 					
- 
+
 \section{Codice completo}
 \begin{codice}
 
@@ -439,8 +440,148 @@ cv2.destroyAllWindows()
 \end{codice}
 
 \pagebreak
-\section{Conclusioni}
+\section{Per migliorare}
+Il codice cos\`i proposto permette di tracciare in maniera consistente i movimenti degli occhi rispetto alla totalit\`a dello schermo. Ma l'eyetracking va oltre. \\
+Il vero punto d'arrivo \`e osservare i movimenti oculari rispetto al capo. A questo proposito abbiamo implementato il codice proposto nella sezione precedente mediante un algoritmo che permetta di studiare il movimento dell'iride studiando le variazioni di colore nella zona oculare.\\
+Lo pseudocodice e il codice qui proposti hanno i primi quattro punti in comune con il codice già visto.
 
+\subsection{Dallo pseudocodice...}
+\begin{enumerate}
+    \item \label{cinque}\textcolor{Plum}{Studio del movimento oculare}
+    \begin{enumerate}
+    	\item \label{1} \textcolor{Plum}{Rappresentazione dell'immagine in bianco e nero}
+    	\item \label{2} \textcolor{Plum}{Studio del movimento delle zone di colore}
+    \end{enumerate}
+    \item \label{sei}\textcolor{Plum}{Rappresentazione del movimento oculare}
+\end{enumerate}
+
+\subsection{...Al codice}
+\vspace{1cm} Prima di procedere \`e necessario introdurre tre funzioni che ci torneranno utili nel corso della stesura del programma. 
+\\
+\\
+
+
+ \begin{codice}
+ 	def calc_min_max(matr,ew,eh):
+ 	min_gray=255
+ 	max_gray=0
+ 	a=0
+ 	b=0
+ 	for i in range(0,ew):
+ 	   for j in range(0,eh):
+ 	      if (matr[i][j]>max_gray):
+ 	         max_gray=matr[i][j]
+ 	      if (matr[i][j]<min_gray):
+ 	         min_gray=matr[i][j]
+ 	return min_gray,max_gray
+ \end{codice}
+
+\vspace{1cm} La funzione 'calc\_min\_max' permette di trovare il valore massimo e minimo di grigio dell'immagine inviata in ingresso. Ha come parametri d'ingresso un'immagine e le sue due dimensioni. La funzione ritorna due valori: min\_gray e max\_gray.
+\\
+\\
+
+
+\begin{codice}
+def calc_mean(matr,ew,eh):
+cont=0
+a=0
+b=0
+for i in range(0,ew):
+   for j in range(0,eh):
+      if (matr[i][j]==255):
+         a=a+i;
+         b=b+j;
+         cont=cont+1;
+      if cont>0:
+         c=float(a/cont)
+         d=float(b/cont)
+return c,d
+
+\end{codice}
+
+\vspace{1cm} La funzione 'calc\_mean' permette di trovare le coordinate x e y del punto che rappresenta la media del bianco nel'immagine. Per ottimizzare l'utilizzo di questa funzione \`e necessario che sull'immagine in ingresso sia stata precedentemente applicata una trasformazione che ne esalti il contrato sino a renderla un'immagine in soli bianco e nero. I parametri in ingresso della funzione sono: l'immagine input e le sue dimensioni. L'output della funzione è costituito dalle coordinate del punto di media.
+\\
+\\
+\begin{codice}
+	def leds_on(x_m,y_m,ew,eh):
+	if (x_m>ew/2):
+	   col[3]='g'
+	   col[0]='w'
+	else:
+	   col[0]='g'
+	   col[3]='w'
+	if (y_m>eh/2):
+	   col[2]='g'
+	   col[1]='w'
+	else:
+	   col[1]='g'
+	   col[2]='w'
+\end{codice}
+
+\vspace{1cm} La funzione 'leds\_on' permette di accendere due dei quattro led che verranno tracciati nel corso dell'esecuzione del programma a seconda della posizione del punto di media del bianco rispetto all'immagine. Ha come parametri in ingresso le coordinate del punto media del bianco e le dimensioni dell'immagine sulla quale era stata precedentemente applicata 'calc\_mean'.
+\\
+\\
+
+\ref {cinque} \underline{\textbf{\textcolor{Plum}{Studio del movimento oculare}}}
+\\
+\\
+\ref{1} \textcolor{Plum}{Rappresentazione dell'immagine in bianco e nero}
+\\
+\\
+ \begin{codice}
+ 	#Calling function to calculate the minimum and maximum value of gray in the image
+ 	min_gray,max_gray=calc_min_max(roi_gray2,ew,eh)
+ 	
+ 	#Defining threshold values for image filtering (the value corresponds to a grey level)
+ 	upper=max_gray*30/100
+ 	lower=0
+ 	
+ 	
+ 	#Applying inRange function to pull out from the input image only the pixels that are included in this specific gray range 
+ 	mask = cv2.inRange(roi_gray2, lower, upper)
+ 	#The output is an image where the elements, which are in the range, are shown in white, while everything else il black.
+ \end{codice}
+ 
+ \vspace{1cm} Dopo aver applicato la funzione 'calc\_min\_max', utilizzo il valore massimo di grigio trovato (che equivale al pixel più chiaro dell'immagine) per definire una delle due soglie di grigio. Le due soglie vengono poi inserite come input nella funzione 'inRange' utile per evidenziare (bianco) tutti i pixel dell'immagine input i cui colori sono al'interno della soglia impostata. Attraverso l'uso della funzione 'calc\_min\_max' \`e possibile effettuare uno studio adattativo dei valori di grigio sui vari frame, rendendo dunque più consistente il prodotto.
+ \\
+ \\
+
+
+\ref{2} \textcolor{Plum}{Studio del movimento delle zone di colore}
+\\
+\\
+\begin{codice}
+	#Calling functions to calculate middle point of the mask and to change leds color
+	x_m,y_m=calc_mean(mask,ew,eh)
+	
+\end{codice}
+
+\vspace{1cm} Viene applicata la funzione 'calc\_mean' che studia i cambiamenti di colore nella zona occhio. Nell'applicazione di questa funzione si presuppone che alcune delle zone riconosciute come "positive"  rimangano ferme durante l'acquisizione dei frame (ad esempio ciglia e sopracciglia), mentre invece la zona in movimento che viene captata dalla funzione sia effettivamente solo quella dell'iride.
+\\
+\\
+
+\ref {sei} \underline{\textbf{\textcolor{Plum}{Rappresentazione del movimento oculare}}}
+\\
+\\
+\begin{codice}
+leds_on(x_m,y_m,ew,eh)
+
+#Clearing the output every time it receives a new input
+display.clear_output(wait=True) 
+
+#Plotting and showing the scatterplot representing the leds
+plt.scatter([-1,0,0,1],[0,1,-1,0],s=800,c=col)
+plt.axis([-2,2,-2,2])
+plt.xlabel('left/right')
+plt.ylabel('up/down')
+plt.show()   
+\end{codice}
+\vspace{1cm} Commento commento commento
+\\
+\\
+\pagebreak
+
+\section{Conclusioni}
 
 
 \end{document}
