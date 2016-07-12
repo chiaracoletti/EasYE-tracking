@@ -24,10 +24,10 @@ Please, feel free to contact us:
 
 giada.colella@mail.polimi.it:
 
-![](https://github.com/chiaracoletti/EasYE-tracking/blob/master/036E5797050B4B66A7BFC3A09EDB543D.png)
+![](https://github.com/chiaracoletti/EasYE-tracking/blob/master/foto1_readme.png)
 
 chiara.coletti@mail.polimi.it:
 
-![](https://github.com/chiaracoletti/EasYE-tracking/raw/master/IMG_20160706_194512.png)
+![](https://github.com/chiaracoletti/EasYE-tracking/raw/master/foto2_readme.png)
 
 Thanks for your attention :)
