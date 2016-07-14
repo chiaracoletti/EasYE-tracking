@@ -27,12 +27,9 @@ stepnumber=2, numbersep=5pt, frame=single,breaklines=True}}{}
 
 \begin{document}
 	
-
 \begin{figure}
 \centering
-\includegraphics[width=6cm,height=7.2cm]{im2}%
-\qquad\qquad
-\includegraphics[width=6.1cm,height=7.25cm]{im}
+\includegraphics[width=15cm,height=10cm]{EasYE_TRACKING_logob}
 \end{figure}
 
 \maketitle
@@ -43,40 +40,39 @@ stepnumber=2, numbersep=5pt, frame=single,breaklines=True}}{}
 \pagebreak
 
 \begin{abstract}
-	L' \textbf{Eye tracking} \`e un complesso processo di misurazione del punto di fissazione oculare. I vantaggi che derivano dall'utilizzo di questa tecnica sono molteplici: a partire da indagini statistiche di mercato fino al miglioramento della comunicazione uomo/macchina.\\
+	L' \textbf{Eye tracking} \`e un complesso processo di misurazione del punto di fissazione oculare. Le applicazioni di questa tecnica sono molteplici: a partire da indagini statistiche di mercato fino al miglioramento della comunicazione uomo/macchina.\\
 	Quando si guarda qualcosa gli occhi si spostano almeno 3/4 volte al secondo tramite movimenti detti "saccadi" che durano circa un decimo di secondo, mentre le fissazioni durano da 2 a 4 decimi di secondo. Questi movimenti continui sono alla base dei meccanismi del sistema visivo... e dell' Eye tracking. \\
 	Sul mercato esistono diverse tipologie di eye tracker come VideoTracker (una telecamera registra i movimenti oculari dell'utente rispetto allo schermo) o InfraredTracker (strumento che studia la riflessione dei raggi infrarossi da parte della pupilla).
 \end{abstract}
 \pagebreak
 \section{Introduzione}
-Il progetto \textbf{EasYe Tracking} si pone nella prima fase di realizzazione di un eye tracker. Ha come scopo lo studio del movimento dell'occhio. Partendo da un video, si cerca di individuare l'occhio e di tracciarne il movimento. Punto focale della ricerca \`e stato il riconoscimento della posizione del centro dell'iride rispetto alla finestra video. 
-\\In questo documento viene affrontato lo studio dell' Eye tracking tramite due aprocci differenti: il codice che viene presentato  al punto \textbf{4 "Codice completo"}, permette di riconoscere la posizione del'occhio nella finestra video. Non da dunque alcuna informazione riguardante il movimento relativo del'iride rispetto al volto.
-Nella sezione \textbf{5 "Per migliorare"}, invece, viene presentato un secondo approccio, pi\`u specifico per il problema Eye Tracking. Presa l'immagine in ingresso dalla telecamera, vengono studiate le modifiche di colore della zona occhi e, a partire da quelle, il programma fornisce indicazioni riguardanti il movimento oculare relativo al volto.
-\\Il progetto \`e stato sviluppato usando {\textbf{"Python"} come linguaggio di programmazione. Il primo passo per la realizzazione del progetto \`e stato installare la libreria libera \textit{\textbf{Opencv}}. Opencv permette, tra le altre funzioni, di manipolare immagini, inseguire oggetti (Object Tracking) o effettuarne un riconoscimento (Pattern Recognition). Il riconoscimento di volti ed occhi \`e stato realizzato mediante l'algoritmo "Cascade Classification". Prima di operare, dunque, \'e stato necessario importare i file classificatori (o "haarcascades") nella cartella di lavoro.
-
+Il progetto \textbf{EasYE Tracking} si pone nella prima fase di realizzazione di un eye tracker. Ha come scopo lo studio del movimento dell'occhio. Partendo da un video, abbiamo cercato di individuare l'occhio e di tracciarne il movimento. Punto focale della ricerca \`e stato il riconoscimento della posizione del centro dell'iride rispetto alla finestra video. 
+\\Durante il nostro lavoro abbiamo affrontato lo studio dell' Eye tracking tramite due approcci differenti: il codice che viene presentato  al punto \textbf{4 "Codice completo"}, permette di tracciare la posizione dell'occhio nella finestra video. Non da dunque alcuna informazione riguardante il movimento relativo dell'iride rispetto al volto.
+Nella sezione \textbf{5 "Un passo avanti"}, invece, abbiamo presentato un secondo approccio, pi\`u specifico per il problema Eye Tracking. Presa l'immagine in ingresso dalla telecamera, abbiamo selezionato le zone pi\`u scure, ipotizzando che l'iride e la pupilla siano tra queste, e ne abbiamo studiato il movimento relativo al resto dell'occhio. 
+\\Il progetto \`e stato sviluppato usando {\textbf{"Python"} come linguaggio di programmazione, in quanto pi\`u immediato, intuitivo e flessibile rispetto al C. Il primo passo per la realizzazione del progetto \`e stato installare la libreria libera \textit{\textbf{Opencv}}. Opencv permette di manipolare immagini, tracciare oggetti (Object Tracking) o riconoscerli (Pattern Recognition). 
 	\subsection{Cosa sono le Haarcascades}
-	Il riconoscimento di oggetti in un'immagine o in un video \`e uno dei principali argomenti trattati in questo progetto. \\
-	Il metodo di riconoscimento che \`e stato scelto \`e l' \textbf{Haarcascades classification}. \`E un algoritmo basato sull'applicazione a cascata di funzioni classificatrici, introdotto per la prima volta nel 2001. 
-	Dapprima un classificatore è addestrato con qualche centinaia di immagini campione di un particolare oggetto (immagini positive) e altri immagini campione di sfondo (immagini negative) tutte portate alla stessa dimensione. \\ Successivamente il classificatore viene applicato alla regione di interesse (ROI, region of interest) dell'immagine input. La funzione ritorna "1" in caso di matching tra oggetti tra la ROI il classificatore, "0" altrimenti. \\
-	La parola "cascade" nel nome dell'algoritmo significa che il classificatore finale \`e il risultato di varie applicazioni seriali di classificatori pi\`u semplici che si interrompono quando tutte hanno dato esito positivo o quando in un solo passaggio la ROI \`e stata rigettata.
+	Il riconoscimento di oggetti in un'immagine o in un video \`e il punto focale del nostro progetto. \\
+	Il metodo di riconoscimento che abbiamo scelto \`e l' \textbf{Haarcascades classification}. \`E un algoritmo basato sull'applicazione a cascata di funzioni classificatrici, introdotto per la prima volta nel 2001. 
+	 Il processo di creazione di un Cascade Classifier \`e piuttosto lungo e macchinoso. Dapprima un classificatore \`e addestrato con qualche centinaia di immagini campione di un particolare oggetto (immagini positive) e altri immagini campione di sfondo (immagini negative) tutte dellla stessa dimensione. \\ Successivamente il classificatore viene applicato alla regione di interesse (ROI, region of interest) dell'immagine input. La funzione ritorna "1" in caso di matching avvenuto tra oggetti, "0" altrimenti. \\
+	La parola "cascade" nel nome dell'algoritmo significa che il classificatore finale \`e il risultato di varie applicazioni seriali di classificatori pi\`u semplici che si interrompono quando tutte hanno dato esito positivo o quando in un solo passaggio la ROI \`e stata rigettata, rendendo cos\`i pi\`u preciso il riconoscimento.
 \pagebreak
 
 \section{Dallo Pseudocodice...}
-Abbiamo ritenuto utile suddividere il nostro progetto in vari step:
+\`E stato naturale suddividere il nostro progetto in vari step, affrontando lo sviluppo passo dopo passo:
 \begin{enumerate}
 	\item \label{primo}\textcolor{Plum}{Acquisizione video e analisi frame by frame}
 	\item \label{secondo} \textcolor{Plum}{Conversione dei frame acquisiti in scala di grigi}
 	\item \label{terzo} \textcolor{Plum}{Riconoscimento del volto}
 	\item \label{quarto}\textcolor{Plum}{Riconoscimento degli occhi}
-    \item \label{quinto}\textcolor{Plum}{Riconoscimento cerchi nell'area occhi}
-    \item \label{sesto}\textcolor{Plum}{Rappresentazione del movimento oculare}
-    \item \label{settimo}\textcolor{Plum}{Generazione video e chiusura programma}
+        \item \label{quinto}\textcolor{Plum}{Riconoscimento cerchi nell'area occhi}
+    	\item \label{sesto}\textcolor{Plum}{Rappresentazione del movimento oculare}
+    	\item \label{settimo}\textcolor{Plum}{Visualizzazione video e fine programma}
 \end{enumerate}
 
 \pagebreak
 \section{...Al codice}
 \vspace{1cm}
-Importiamo le librerie oportune, introduciamo i parametri che ci torneranno utili nella stesura del codice ed importiamo le Haarcascades che userem per il riconoscimento di volto e occhi.
+Importiamo le librerie opportune, impostiamo i parametri che ci torneranno utili nella stesura del codice ed importiamo le Haarcascades che useremo per il riconoscimento di volto e occhi. I parametri sono fondamentali per il funzionamento del codice, la scelta del valore da usare \`e stato uno dei passaggi pi\`u delicati nella stesura del codice. Spesso imporre parametri troppo precisi impediva il funzionamento del programma, mentre parametri meno precisi comportano errori non trascurabili.
 \vspace{1cm}
 \begin{codice}
 %matplotlib inline
@@ -104,7 +100,7 @@ eyeCascade=cv2.CascadeClassifier("haarcascade_eye.xml")
 \ref {primo} \underline{\textbf{\textcolor{Plum}{Acquisizione video e analisi frame by frame}}}
 
 \vspace{1cm}
-Abbiamo importato il video dalla webcam, rinominato la finestra video e salvato in "frame" gli elementi su cui poi andremo a lavorare. L'ultima operazione vine inserita all'interno di un ciclo while che verrà interrotto solo al termine dell'esecuzione dell'intero programma.
+Abbiamo importato il video dalla webcam, rinominato la finestra video e salvato in "frame" gli elementi su cui poi andremo a lavorare. L'ultima operazione vine inserita all'interno di un ciclo while infinito che viene interrotto dall'utente premendo 'esc'.
 
 \vspace{1cm}
     \begin{codice}
@@ -117,7 +113,7 @@ while True:
 
 \vspace{1cm}
     
- Definisco x\_dim e y\_dim come le dimensioni del video in entrata. Saranno utili in seguito. 
+ Definisco x\_dim e y\_dim come le dimensioni del video in entrata. Saranno utili in seguito, per definire le dimensioni dello scatterplot su cui mostreremo le posizioni degli occhi. 
  
  \vspace{1cm}  
     
@@ -133,7 +129,9 @@ y_dim=video_capture.get(4)
  \vspace{1cm}
  
  
- Applichiamo la funzione 'cvtColor' specificando il tipo di conversione da eseguire (in questo caso convertiamo da una figura a colori ad una a scala di grigi mediante il comando cv2.COLOR\_BGR2GRAY). La funzione viene applicata a 'frame' ovvero la zona di memoria in cui vengono salvati i singoli frame del video.
+ Applichiamo la funzione 'cvtColor' specificando il tipo di conversione da eseguire (in questo caso convertiamo da una figura a colori ad una a scala di grigi mediante il comando cv2.COLOR\_BGR2GRAY). La funzione viene applicata a 'frame' ovvero la zona di memoria in cui vengono salvati i singoli frame del video. \\
+Convertire le immagini in scala di grigi \`e molto utile perch\`e rende l'elaborazione molto pi\`u semplice.
+
  \vspace{1cm}
  
 \begin{codice}
@@ -146,7 +144,7 @@ y_dim=video_capture.get(4)
 \ref {terzo} \underline{\textbf{\textcolor{Plum}{Riconoscimento del volto}}}
 \vspace{1cm}
 
-Applichiamo la funzione 'detectMultiscale' e utilizziamo le cascaspecificando il tipo di conversione da eseguire (in questo caso convertiamo da una figura a colori ad una a scala di grigi mediante il comando cv2.COLOR\_BGR2GRAY). La funzione viene applicata a 'gray' ovvero la zona di memoria in cui abbiamo salvato i risultati della conversione dei vari frame in scala di grigi. Salviamo l'output della funzione (una lista di quattro elementi: coordinata x e coordinata y del vertice superiore sinistro del rettangolo, base e altezza) in "faces".  
+Applichiamo la funzione 'detectMultiscale' e utilizziamo le cascade passandogli in ingresso l'immagine gi\`a in scala di grigi. Salviamo l'output della funzione (una lista di liste di quattro elementi: coordinata x e coordinata y del vertice superiore sinistro del rettangolo, base e altezza) in "faces".  
 \vspace{1cm}
 
 \begin{codice}
@@ -159,7 +157,7 @@ Applichiamo la funzione 'detectMultiscale' e utilizziamo le cascaspecificando il
 \end{codice}
 \vspace{1cm}
 
-Tracciamo i rettangoli attorno ai volti riconosciuti mediante la funzione 'rectangle'.
+Scorriamo tutti i volti riconosciuti con un ciclo for e tracciamo un rettangolo intorno mediante la funzione 'rectangle'. Opencv ci \`e stata molto utile anche perch\`e ci ha permesso di disegnare oggetti sulla finestra del video.
 \vspace{1cm}
 
  \begin{codice}
@@ -173,7 +171,7 @@ Tracciamo i rettangoli attorno ai volti riconosciuti mediante la funzione 'recta
 
 \vspace{1cm}
 
-Definisco nuove aree di lavoro: rappresentano la stessa area (limitata alla metà superiore del volto), la prima è in scala di grigi, la seconda a colori.
+Definiamo ora una nuova area di interesse, ovvero la met\`a superiore del volto, ipotizzando che gli occhi si trovino al suo interno. In questo modo rendiamo pi\`u veloce il riconoscimento degli occhi.
 
 \vspace{1cm}
 
@@ -187,7 +185,7 @@ Definisco nuove aree di lavoro: rappresentano la stessa area (limitata alla met�
 \vspace{1cm}
 
 
-Applichiamo nuovamente la funzione 'detectMultiscale'. Questa volta la funzione viene applicata a 'roi\_gray'.Salviamo l'output della funzione in "eyes".
+Applichiamo nuovamente la funzione 'detectMultiscale'. Questa volta la funzione viene applicata a 'roi\_gray'.Salviamo l'output della funzione, che come prima \`e una lista di rettangoli, in "eyes". Ovviamente, essendo gli occhi molto diversi da un volto, i parametri che abbiamo usato per la funzione 'detectMultiscale' non sono gli stessi.
 \vspace{1cm}
  
  \begin{codice}
@@ -215,7 +213,7 @@ Tracciamo i rettangoli attorno agli occhi riconosciuti mediante la funzione 'rec
  \vspace{1cm} 	
  
  
- Definisco nuove aree di lavoro: rappresentano la stessa area (limitata ai rettangoli degli occhi riconosciuti), la prima è in scala di grigi, la seconda a colori.
+ Definisco nuove aree di lavoro: rappresentano la stessa area (limitata ai rettangoli degli occhi riconosciuti), la prima \`e in scala di grigi, la seconda a colori. Questa \`e un'altra ottimizzazione del programma.
  \vspace{1cm}
  \begin{codice}
                 roi_gray2=roi_gray[ey:ey+eh,ex:ex+ew]
@@ -225,7 +223,7 @@ Tracciamo i rettangoli attorno agli occhi riconosciuti mediante la funzione 'rec
 
 \vspace{1cm}
 
-Applichiamo la funzione 'HoughCircles' per il riconoscimento degli occhi nell'area inserita come input (roi\_gray2). Salviamo l'output della funzione (una lista di tre elementi: coordinata x, coordinata  e raggio del cerchio riconosciuto) in "circles".
+Applichiamo la funzione 'HoughCircles' per il riconoscimento degli occhi nell'area inserita come input (roi\_gray2). Salviamo l'output della funzione (una lista di liste di tre elementi: coordinata x, coordinata  e raggio del cerchio riconosciuto) in "circles".
 \vspace{1cm}
 
 \begin{codice}
@@ -235,7 +233,7 @@ Applichiamo la funzione 'HoughCircles' per il riconoscimento degli occhi nell'ar
 \end{codice}
 \vspace{1cm}
 
-Introduciamo la condizione che ci permette di "bypassare" i frame in cui non viene riconosciuto alcun cerchio. Nel caso in cui, invece, il cerchio venga riconosciuto, 'circles' viene trasformato in un ato di tipo intero.
+Introduciamo la condizione che ci permette di ignorare i frame in cui non viene riconosciuto alcun cerchio. Nel caso in cui, invece, il cerchio venga riconosciuto, 'circles' viene  arrotondato e trasformato in un intero. Per queste operazioni abbiamo usato delle funzioni della libreria \textbf{Numpy}, che comprende le funzioni fondamentali del calcolo scientifico.
 \vspace{1cm}
 \begin{codice}
                 if(circles==None):
@@ -251,8 +249,8 @@ Tracciamo i cerchi e il loro centro.
 
  \begin{codice}
                   for (x_c,y_c,r) in circles:
-                    cv2.circle(roi_color2,(x_c,y_c),r,(0,255,0),2)
-                    cv2.circle(roi_color2,(x_c,y_c),2,(0,0,255),3)
+                      cv2.circle(roi_color2,(x_c,y_c),r,(0,255,0),2)
+                      cv2.circle(roi_color2,(x_c,y_c),2,(0,0,255),3)
 \end{codice}
 
   \vspace{2cm}	 				
@@ -263,7 +261,8 @@ Tracciamo i cerchi e il loro centro.
 \vspace{1cm}
 
 
-Introduco uno scatterplot di dimensioni (x\_dim e y\_dim) pari alle dimensioni del video in cui visualizzo il centro di cerchio trovato. I punti hanno una trasparenza tale da permettere di osservare le zone dello scatterplot più dense di punti: ovvero quelle zone in cui lo il centro dell'iride è stato più presente.
+Abbiamo tracciato uno scatterplot di dimensioni (x\_dim e y\_dim), ovvero le dimensioni del video, in cui ogni punto corrisponde al centro di cerchio trovato. I punti hanno una trasparenza tale da permettere di osservare le zone dello scatterplot pi\`u dense di punti: ovvero quelle zone in cui lo il centro dell'iride \`96 stato pi\`u presente, quasi come in una mappa termica.\\
+La libreria che abbiamo usato per disegnare i grafici \`e \textbf{Matplotlib}, in particolare l'estensione \textit{pyplot}.
 \vspace{1cm}
 
 \begin{codice}
@@ -284,17 +283,17 @@ Introduco uno scatterplot di dimensioni (x\_dim e y\_dim) pari alle dimensioni d
 \vspace{1cm}
 
 
-\ref {settimo} \underline{\textbf{\textcolor{Plum}{Generazione video e chiusura programma}}}
+\ref {settimo} \underline{\textbf{\textcolor{Plum}{Visualizzazione video e fine programma}}}
 \vspace{1cm}
 
-Mostriamo il video. In 'frame' saranno state apportate le modifiche delle varie aree di interesse. Nel video saranno dinque mostrati i rettangoli dei volti e degli occhi riconosciuti e i cerchi trovati all'interno dei rettangoli degli occhi.
+Mostriamo il video. In 'frame' saranno state apportate le modifiche delle varie aree di interesse. Nel video saranno dunque mostrati i rettangoli dei volti e degli occhi riconosciuti e i cerchi trovati all'interno dei rettangoli degli occhi.
 \vspace{1cm}
  \begin{codice}
     cv2.imshow('Face and eyes', frame)
 \end{codice}
 \vspace{1cm}
 
-Interuzione del ciclo iniziato al momento della cattura dei frame e chiusura della finestra video quando viene premuto il tasto 'Esc'.
+Impostiamo una condizione che permetta di interrompere il ciclo while altrimenti infinito quando l'utente preme 'Esc'.
 \vspace{1cm}
 \begin{codice}
     if cv2.waitKey(1)==27:
@@ -303,7 +302,7 @@ Interuzione del ciclo iniziato al momento della cattura dei frame e chiusura del
 \end{codice}
 \vspace{1cm}
 
-Chiusura di tutte le finestre.
+Chiudiamo di tutte le finestre.
 \vspace{1cm}
 
 \begin{codice}
@@ -428,10 +427,12 @@ cv2.destroyAllWindows()
 \end{codice}
 
 \pagebreak
-\section{Per migliorare}
-Il codice cos\`i proposto permette di tracciare in maniera consistente i movimenti degli occhi rispetto alla totalit\`a dello schermo. Ma l'eyetracking va oltre. \\
-Il vero punto d'arrivo \`e osservare i movimenti oculari rispetto al capo. A questo proposito abbiamo implementato il codice proposto nella sezione precedente mediante un algoritmo che permetta di studiare il movimento dell'iride studiando le variazioni di colore nella zona oculare.\\
-Lo pseudocodice e il codice qui proposti hanno i primi quattro punti in comune con il codice già visto.
+\section{Un passo avanti...}
+Il codice cos\`i proposto permette di tracciare in maniera consistente i movimenti degli occhi rispetto alla totalit\`a dello schermo. Ma l'eyetracking non si ferma qui. \\
+Il vero punto d'arrivo \`e osservare i movimenti oculari rispetto al capo. A questo proposito abbiamo migliorato il codice proposto nella sezione precedente mediante un algoritmo che permetta di studiare il movimento dell'iride analizzando le variazioni di colore nella zona oculare.
+\\
+Lo pseudocodice e il codice qui proposti hanno i primi quattro punti in comune con il codice precedente.
+\\
 
 \subsection{Dallo pseudocodice...}
 \begin{enumerate}
@@ -446,7 +447,7 @@ Lo pseudocodice e il codice qui proposti hanno i primi quattro punti in comune c
 \subsection{...Al codice}
 \vspace{1cm} Prima di procedere \`e necessario introdurre tre funzioni che ci torneranno utili nel corso della stesura del programma. 
 
-\vspace{1cm} La funzione \textbf{'calc\_min\_max'} permette di trovare il valore massimo e minimo di grigio dell'immagine inviata in ingresso. Ha come parametri d'ingresso un'immagine e le sue due dimensioni. La funzione ritorna due valori: min\_gray e max\_gray.
+\vspace{1cm} La funzione \textbf{'\textit{calc\_min\_max'} }permette di trovare il valore massimo e minimo valore di grigio dell'immagine inviata in ingresso. Ha come parametri d'ingresso un'immagine e le sue due dimensioni. La funzione ritorna due valori: min\_gray e max\_gray. L'analisi dell'immagine avviene pixel per pixel, scorrendo sull'immagine come per una matrice bidimensionale.
 \\
 \\
 
@@ -466,7 +467,7 @@ Lo pseudocodice e il codice qui proposti hanno i primi quattro punti in comune c
  	return min_gray,max_gray
  \end{codice}
 
-\vspace{1cm} La funzione \textbf{'calc\_mean'} permette di trovare le coordinate x e y del punto che rappresenta la media del bianco nel'immagine. Per ottimizzare l'utilizzo di questa funzione \`e necessario che sull'immagine in ingresso sia stata precedentemente applicata una trasformazione che ne esalti il contrato sino a renderla un'immagine in soli bianco e nero. I parametri in ingresso della funzione sono: l'immagine input e le sue dimensioni. L'output della funzione è costituito dalle coordinate del punto di media.
+\vspace{1cm} La funzione \textbf{\textit{'calc\_mean'} }permette di trovare le coordinate x e y del punto che rappresenta la media del bianco nell'immagine. Per ottimizzare l'utilizzo di questa funzione \`e necessario che l'immagine in ingresso sia binaria, ovvero solo in bianco e nero. I parametri in ingresso della funzione sono: l'immagine input e le sue dimensioni. L'output della funzione \`e costituito dalle coordinate del punto di media, se ci sono.
 \\
 \\
 
@@ -485,15 +486,16 @@ for i in range(0,eh):
       if cont>0:
          c=float(a/cont)
          d=float(b/cont)
-return c,d
+	return c,d
+      else:
+        return 0,0
 
 \end{codice}
 
-\vspace{1cm} La funzione \textbf{'leds\_on'} permette di accendere due dei quattro led che verranno tracciati nel corso dell'esecuzione del programma a seconda della posizione del punto di media del bianco rispetto all'immagine. Ha come parametri in ingresso le coordinate del punto media del bianco e le dimensioni dell'immagine sulla quale era stata precedentemente applicata 'calc\_mean'.
+\vspace{1cm} La funzione \textbf{\textit{'leds\_on'}} permette di accendere due dei quattro led che verranno tracciati nel corso dell'esecuzione del programma a seconda della posizione del punto di media del bianco rispetto all'immagine. Ha come parametri in ingresso le coordinate del punto media del bianco e le dimensioni dell'immagine sulla quale era stata precedentemente applicata 'calc\_mean'.
 \\
 \\
 \begin{codice}
-	#Initialising color variables for leds (BGR format)
 	col_up=(0,0,0)
 	col_down=(0,0,0)
 	col_left=(0,0,0)
@@ -568,24 +570,43 @@ else:
   leds_on(x_m,y_m,ew,eh)
   
   if ((x_m!=0)and(y_m!=0)):
-	  #Drawing leds on the output image 
 	  cv2.circle(frame,(x_dim-70,30),20,col_up,-10)
 	  cv2.circle(frame,(x_dim-30,70),20,col_right,-10)
 	  cv2.circle(frame,(x_dim-70,110),20,col_down,-10)
 	  cv2.circle(frame,(x_dim-110,70),20,col_left,-10)
 \end{codice}
 
-\vspace{1cm} La parte conclusiva del programma \`e in comune con il codice presentato precedentemente.
+\vspace{1cm}
+ La parte conclusiva del programma \`e in comune con il codice presentato precedentemente.\\
+ Questo \`e un esempio dell'output che abbiamo ottenuto con questo programma.
+ 
+ \begin{figure}[htbp]
+\centering
+\includegraphics[width=10cm,height=7cm]{leds}
+\end{figure}
+
 
 \pagebreak
 
 \section{Conclusioni}
-Il progetto \textbf{EasYe Tracking} ha come unica pretesa quella di mettere alla prova due studentesse del secondo anno di Ingegneria biomedica (Politecnico di Milano). Abbiamo voluto confrontarci con i problemi che occorrono quando si lavora a progetti pratici. Al termine di questa esperienza abbiamo appurato quanto sia complesso avere a che fare con la realtà, e quanto sia utile avere una buona conoscenza teorica degli argomenti che si stanno analizzando.
+Il nostro progetto ha come unica pretesa quella di mettere alla prova due studentesse del secondo anno di Ingegneria biomedica al Politecnico di Milano. Abbiamo voluto confrontarci con i problemi che si presentano quando si lavora a progetti pratici. Siamo consapevoli del fatto che ci\`o che abbiamo realizzato non \`e lo strumento molto preciso che si pu\`o trovare in commercio, ma considerando che abbiamo realizzato un prodotto senza l'impiego di strumentazione specifica (e costosa), partendo da zero, possiamo ritenerci soddisfatte .Al termine di questa esperienza possiamo concludere che nonostante le numerose difficolt\`a incontrate passo dopo passo, con una solida base teorica, un po' di pazienza e tanta voglia di mettersi in gioco si pu\`o comunque arrivare ad ottenere qualcosa di completo e, a nostro parere, anche consistente.
 \\
 Maggiori informazioni riguardanti il progetto \textbf{EasYe Tracking} e la completa documentazione sono disponibili al sito :
 
 	\hspace{2cm} \url{https://github.com/chiaracoletti/EasYE-tracking.git}
 	
+
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=6cm,height=7.2cm]{im2}%
+\qquad\qquad
+\includegraphics[width=6.1cm,height=7.25cm]{im}
+\end{figure}
+
+\section{Ringraziamenti}
+Vorremmo ringraziare in primo luogo il nostro professore di Informatica Marco Santambrogio che ci ha messo a disposizione il suo tempo, le sue conoscenze e i suoi spazi, permettendoci di fare un'esperienza formativa unica.
+Uno speciale ringraziamento va anche agli ingegneri del \textbf{Necst} che ci hanno seguito, guidato e sostenuto durante tutto lo svolgimento di questo progetto. La loro competenza e disponibilit\`a sono state indispensabili per arrivare alla fine di questo percorso.
 
 
 

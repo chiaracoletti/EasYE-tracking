@@ -5,7 +5,8 @@
 \contentsline {section}{\numberline {2}Dallo Pseudocodice...}{5}
 \contentsline {section}{\numberline {3}...Al codice}{6}
 \contentsline {section}{\numberline {4}Codice completo}{13}
-\contentsline {section}{\numberline {5}Per migliorare}{17}
+\contentsline {section}{\numberline {5}Un passo avanti...}{17}
 \contentsline {subsection}{\numberline {5.1}Dallo pseudocodice...}{17}
 \contentsline {subsection}{\numberline {5.2}...Al codice}{17}
 \contentsline {section}{\numberline {6}Conclusioni}{22}
+\contentsline {section}{\numberline {7}Ringraziamenti}{22}
